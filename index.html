@@ -82,7 +82,7 @@
             margin-top: 100px;
             overflow: auto;
             scroll-behavior: smooth;
-            opacity: 0.5;
+            opacity: 1;
         }
 
         .slider.dragging img {
@@ -103,7 +103,7 @@
             font-family: Arial, Helvetica, sans-serif;
             box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
             z-index: 1;
-            display: flex;
+            display: none;
             flex-direction: row;
         }
 
@@ -205,6 +205,24 @@
                 </li>
             </ul>
         </nav>
+        <script>
+            const listItems = document.querySelectorAll(".list-item");
+            listItems.forEach(item => {
+                item.addEventListener('click', ()=>{
+                    const submenu = document.querySelector('.submenu');
+                    const sliderContainer = document.querySelector('.sliderContainer');
+                    if(submenu && sliderContainer){
+                        submenu.style.display = ( submenu.style.display === 'flex')? 'none':'flex';
+                        if( submenu.style.display === 'flex'){
+                            sliderContainer.style.opacity = '0.2';
+                        }
+                        else{
+                            sliderContainer.style.opacity = '1';
+                        }
+                    }
+                });
+            });
+        </script>
         <div class="button">
             <a href="#">Log in</a>
             <a href="#" class="request">Request a demo</a>
@@ -251,6 +269,8 @@
         container.addEventListener("mousedown", dragStart);
         container.addEventListener("mousemove", dragging);
         document.addEventListener("mouseup", dragStop);
+
+
     </script>
 </body>
 </html>
