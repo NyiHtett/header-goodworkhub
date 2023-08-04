@@ -129,6 +129,19 @@
             padding: 15px;
             color: white;
         }
+
+        @keyframes submenu{
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to  {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        
     </style>
 </head>
 <body>
@@ -206,6 +219,7 @@
             </ul>
         </nav>
         <script>
+            
             const listItems = document.querySelectorAll(".list-item");
             listItems.forEach(item => {
                 item.addEventListener('click', ()=>{
@@ -214,9 +228,11 @@
                     if(submenu && sliderContainer){
                         submenu.style.display = ( submenu.style.display === 'flex')? 'none':'flex';
                         if( submenu.style.display === 'flex'){
+                            submenu.style.animation = "submenu 0.5s ease";
                             sliderContainer.style.opacity = '0.2';
                         }
                         else{
+                            submenu.style.animation = "reverse-submenu 0.5s ease";
                             sliderContainer.style.opacity = '1';
                         }
                     }
