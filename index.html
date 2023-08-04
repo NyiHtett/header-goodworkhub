@@ -43,9 +43,8 @@
 
         a {
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 5px;
             color: inherit;
-            padding: 15px;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -58,6 +57,7 @@
             display: flex;
             flex-direction: row;
             gap: 20px;
+            padding: auto;
         }
 
         /* CSS for the image slider */
@@ -152,7 +152,8 @@
         <nav>
             <ul class="list">
                 <li class = "list-item">
-                    <a href="#">Home</a>
+                    <a href="#" class = "listItemWrapper" >
+                        <p> Home</p> <img class="arrow rotate-90-cw" src="down-arrow.svg"/> </a>
                     <ul class = "submenu">  
                         <div class = "row">
                             <p class = "subTitle">Hire Anywhere</p>
@@ -208,16 +209,40 @@
                     </ul>
                 </li>
                 <li class = "list-item">
-                    <a href="#">Services</a>
+                    <a href="#" class = "listItemWrapper" >
+                        <p> Services</p> <img class="arrow" src="down-arrow.svg"/> </a>
                 </li>
                 <li class = "list-item">
-                    <a href="#">About us</a>
+                    <a href="#" class = "listItemWrapper" >
+                        <p> About us</p> <img class="arrow" src="down-arrow.svg"/> </a>
                 </li>
                 <li class = "list-item">
-                    <a href="#">Contact</a>
+                    <a href="#" class = "listItemWrapper" >
+                        <p> Contact</p> <img class="arrow" src="down-arrow.svg"/> </a>
                 </li>
             </ul>
         </nav>
+        <style>
+            .arrow{
+                padding: 0;
+                width: 30px;
+                margin-left: 10px;
+                transition: transform 0.5s ease;
+            }
+            .arrow.down{
+                transform: rotate(180deg);
+            }
+            .arrow.up{
+                transform: rotate(0);
+            }
+            .listItemWrapper{
+                display: flex; 
+                flex-direction: row; 
+                flex-grow: 1;
+                padding-inline: 10px;
+            }
+            
+        </style>
         <script>
             
             const listItems = document.querySelectorAll(".list-item");
@@ -225,14 +250,18 @@
                 item.addEventListener('click', ()=>{
                     const submenu = document.querySelector('.submenu');
                     const sliderContainer = document.querySelector('.sliderContainer');
+                    const rotate = document.querySelector('.rotate-90-cw');
                     if(submenu && sliderContainer){
                         submenu.style.display = ( submenu.style.display === 'flex')? 'none':'flex';
                         if( submenu.style.display === 'flex'){
                             submenu.style.animation = "submenu 0.5s ease";
                             sliderContainer.style.opacity = '0.2';
+                            item.querySelector('.arrow').classList.add('down');
+                            item.querySelector('.arrow').classList.remove('up');
                         }
                         else{
-                            submenu.style.animation = "reverse-submenu 0.5s ease";
+                            item.querySelector('.arrow').classList.add('up');
+                            item.querySelector('.arrow').classList.remove('down');
                             sliderContainer.style.opacity = '1';
                         }
                     }
@@ -240,8 +269,8 @@
             });
         </script>
         <div class="button">
-            <a href="#">Log in</a>
-            <a href="#" class="request">Request a demo</a>
+            <a href="#" style = "padding: 20px;">Log in</a>
+            <a href="#" class="request" style = "padding: 20px;">Request a demo</a>
         </div>
     </div>
 
